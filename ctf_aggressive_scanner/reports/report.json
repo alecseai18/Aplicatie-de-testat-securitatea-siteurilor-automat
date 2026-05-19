@@ -1,0 +1,191 @@
+[
+  {
+    "name": "Security Misconfiguration - Missing Headers",
+    "status": "confirmed",
+    "severity": "low",
+    "evidence": "Missing headers: Content-Security-Policy, X-Frame-Options, X-Content-Type-Options",
+    "url": "http://127.0.0.1:5000/",
+    "request": "GET /",
+    "recommendation": "Add security headers: Content-Security-Policy, X-Frame-Options or CSP frame-ancestors, X-Content-Type-Options, Strict-Transport-Security in HTTPS deployments, secure cookie flags, and disable debug/default configurations."
+  },
+  {
+    "name": "Debug/Misconfiguration Exposure",
+    "status": "likely",
+    "severity": "medium",
+    "evidence": "Debug/framework artifacts visible",
+    "url": "http://127.0.0.1:5000/",
+    "request": "",
+    "recommendation": "Add security headers: Content-Security-Policy, X-Frame-Options or CSP frame-ancestors, X-Content-Type-Options, Strict-Transport-Security in HTTPS deployments, secure cookie flags, and disable debug/default configurations."
+  },
+  {
+    "name": "Clickjacking",
+    "status": "confirmed",
+    "severity": "medium",
+    "evidence": "No X-Frame-Options or CSP frame-ancestors protection",
+    "url": "http://127.0.0.1:5000/",
+    "request": "GET /",
+    "recommendation": "Set X-Frame-Options=DENY/SAMEORIGIN or CSP frame-ancestors to trusted origins only. Test that sensitive pages cannot be embedded in iframes."
+  },
+  {
+    "name": "SQL Injection - login bypass",
+    "status": "confirmed",
+    "severity": "critical",
+    "evidence": "Login accepted SQLi payload in password: ' OR 1=1 --",
+    "url": "http://127.0.0.1:5000/login",
+    "request": "POST /login",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - login bypass",
+    "status": "confirmed",
+    "severity": "critical",
+    "evidence": "Login accepted SQLi payload in password: ' OR '1'='1' --",
+    "url": "http://127.0.0.1:5000/login",
+    "request": "POST /login",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - login bypass",
+    "status": "confirmed",
+    "severity": "critical",
+    "evidence": "Login accepted SQLi payload in password: '/**/OR/**/1=1--",
+    "url": "http://127.0.0.1:5000/login",
+    "request": "POST /login",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - login bypass",
+    "status": "confirmed",
+    "severity": "critical",
+    "evidence": "Login accepted SQLi payload in password: ' OR 'a'='a",
+    "url": "http://127.0.0.1:5000/login",
+    "request": "POST /login",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - form probing",
+    "status": "likely",
+    "severity": "high",
+    "evidence": "SQL-related response after payload ' OR '1'='1' --",
+    "url": "http://127.0.0.1:5000/documents?id=2",
+    "request": "GET http://127.0.0.1:5000/documents?id=2",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - form probing",
+    "status": "likely",
+    "severity": "high",
+    "evidence": "SQL-related response after payload ' OR '1'='1' --",
+    "url": "http://127.0.0.1:5000/documents?id=1",
+    "request": "GET http://127.0.0.1:5000/documents?id=1",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - form probing",
+    "status": "likely",
+    "severity": "high",
+    "evidence": "SQL-related response after payload ' UNION SELECT NULL--",
+    "url": "http://127.0.0.1:5000/ssrf",
+    "request": "POST http://127.0.0.1:5000/ssrf",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - form probing",
+    "status": "likely",
+    "severity": "high",
+    "evidence": "SQL-related response after payload ' UNION SELECT NULL--",
+    "url": "http://127.0.0.1:5000/command",
+    "request": "POST http://127.0.0.1:5000/command",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - form probing",
+    "status": "likely",
+    "severity": "high",
+    "evidence": "SQL-related response after payload ' OR '1'='1' --",
+    "url": "http://127.0.0.1:5000/xss",
+    "request": "GET http://127.0.0.1:5000/xss",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "SQL Injection - form probing",
+    "status": "likely",
+    "severity": "high",
+    "evidence": "SQL-related response after payload ' OR '1'='1' --",
+    "url": "http://127.0.0.1:5000/documents",
+    "request": "GET http://127.0.0.1:5000/documents",
+    "recommendation": "Use parameterized queries/prepared statements everywhere; never concatenate user input into SQL. Add server-side allowlist validation for input types, keep DB errors out of HTTP responses, use least-privilege DB accounts, and add regression tests with SQLi payloads."
+  },
+  {
+    "name": "Cross-Site Scripting (XSS)",
+    "status": "confirmed",
+    "severity": "high",
+    "evidence": "Payload token reflected/stored; unescaped=True",
+    "url": "http://127.0.0.1:5000/xss",
+    "request": "payload=<script>alert('CTF_XSS_5cc27f11')</script>",
+    "recommendation": "Encode output contextually (HTML, attribute, JavaScript, URL), sanitize rich text with a trusted allowlist sanitizer, avoid rendering raw user input, use HttpOnly/SameSite cookies, and deploy a strict Content-Security-Policy."
+  },
+  {
+    "name": "Cross-Site Request Forgery (CSRF)",
+    "status": "confirmed",
+    "severity": "medium",
+    "evidence": "State changed via cross-origin POST without CSRF token; token CSRF_52c2c76e visible after request",
+    "url": "http://127.0.0.1:5000/xss",
+    "request": "POST without CSRF token",
+    "recommendation": "Require unpredictable per-session CSRF tokens on all state-changing requests, validate Origin/Referer, set cookies to SameSite=Lax or Strict where possible, and reject POST/PUT/DELETE requests without a valid token."
+  },
+  {
+    "name": "IDOR / Broken Access Control",
+    "status": "confirmed",
+    "severity": "high",
+    "evidence": "Changing id returned different accessible resources: ['1', '2', '3']",
+    "url": "http://127.0.0.1:5000/documents?id=2",
+    "request": "GET parameter tampering",
+    "recommendation": "Enforce object-level authorization on the server for every resource access. Do not trust IDs from the client; check that the authenticated user owns or is allowed to access the requested object, and add negative authorization tests."
+  },
+  {
+    "name": "Open Redirect",
+    "status": "confirmed",
+    "severity": "medium",
+    "evidence": "Redirected to external Location: https://example.com",
+    "url": "http://127.0.0.1:5000/redirect?next=https%3A%2F%2Fexample.com&url=https%3A%2F%2Fexample.com",
+    "request": "GET redirect parameter",
+    "recommendation": "Do not redirect to arbitrary user-supplied URLs. Use relative paths or a server-side allowlist of trusted destinations; normalize URLs before validation and reject protocol-relative URLs such as //example.com."
+  },
+  {
+    "name": "Insecure File Upload",
+    "status": "confirmed",
+    "severity": "high",
+    "evidence": "Potentially dangerous file accepted: ctf.php",
+    "url": "http://127.0.0.1:5000/upload",
+    "request": "multipart upload",
+    "recommendation": "Validate file type by content and extension allowlist, rename files to random names, store uploads outside the web root, disable execution in upload directories, enforce size limits, and scan files before serving them."
+  },
+  {
+    "name": "SSRF",
+    "status": "confirmed",
+    "severity": "high",
+    "evidence": "Server fetched local/internal resource via url=http://127.0.0.1:5000/",
+    "url": "http://127.0.0.1:5000/ssrf",
+    "request": "GET SSRF payload",
+    "recommendation": "Use a strict allowlist of permitted destination hosts/schemes, block loopback/private/link-local/cloud metadata IPs after DNS resolution, disable redirects or revalidate every redirect hop, and separate internal networks from user-controlled fetchers."
+  },
+  {
+    "name": "Insecure Deserialization",
+    "status": "confirmed",
+    "severity": "critical",
+    "evidence": "Application accepted/deserialized attacker-controlled serialized blob field=blob",
+    "url": "http://127.0.0.1:5000/deserialize",
+    "request": "POST serialized blob",
+    "recommendation": "Do not deserialize untrusted data, especially with pickle/native object serializers. Use safe formats such as JSON with schema validation, sign and authenticate serialized data if it must be accepted, and remove gadget-capable deserialization paths."
+  },
+  {
+    "name": "Race Condition",
+    "status": "confirmed",
+    "severity": "high",
+    "evidence": "Concurrent withdrawals sent (80 x 50); final page indicates inconsistent state/negative value candidates=[-8, 1, 2, 2, -2850, 700]",
+    "url": "http://127.0.0.1:5000/race",
+    "request": "parallel POST /race",
+    "recommendation": "Make the operation atomic using database transactions, row-level locks, optimistic locking/version checks, or atomic UPDATE conditions. Avoid check-then-update flows and add concurrent-request tests for financial/state-changing operations."
+  }
+]
